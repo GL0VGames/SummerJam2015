@@ -27,9 +27,9 @@ gulp.task("build", function () {
 		}))
 		.pipe(gulp.dest("dist/"));
 
-	gulp.src("images/*")
+	gulp.src("img/*")
 		.pipe(imageMin())
-		.pipe(gulp.dest("dist/images/"));
+		.pipe(gulp.dest("dist/img/"));
 
 	gulp.src("audio/*")
 		.pipe(gulp.dest("dist/audio/"));
