@@ -1,31 +1,38 @@
 {
-	"name": "ChampionOfBreakfast",
-	"version": "0.1.0",
-	"description": "A cooking game built on PhaserJS and Typescript.",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/GL0VGames/SummerJam2015"
-	},
-	"author": "Graham Barber grahammbarber@gmail.com",
-	"contributors": [{
-			"name": "Monochromicon"
-		}, {
-			"name": "shikiroin"
-		}, {
-			"name": "http404error"
-		}, {
-			"name": "Unsteadily"
-		}, {
-			"name": "Desert Beagle"
-		}],
-	"dependencies": {
-    	"gulp": "*",
-    	"gulp-concat": "*",
-    	"gulp-imagemin": "*",
-    	"gulp-minify-css": "*",
-    	"gulp-minify-html": "*",
-    	"gulp-rsync": "*",
-    	"gulp-typescript": "*",
-	    "gulp-uglify": "*"
-	}
+  "name": "ChampionOfBreakfast",
+  "version": "0.1.0",
+  "description": "A cooking game built on PhaserJS and Typescript.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GL0VGames/SummerJam2015"
+  },
+  "author": "Graham Barber grahammbarber@gmail.com",
+  "contributors": [
+    {
+      "name": "Monochromicon"
+    },
+    {
+      "name": "shikiroin"
+    },
+    {
+      "name": "http404error"
+    },
+    {
+      "name": "Unsteadily"
+    },
+    {
+      "name": "Desert Beagle"
+    }
+  ],
+  "dependencies": {
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-connect": "^2.2.0",
+    "gulp-imagemin": "*",
+    "gulp-minify-css": "*",
+    "gulp-minify-html": "*",
+    "gulp-rsync": "*",
+    "gulp-typescript": "*",
+    "gulp-uglify": "*"
+  }
 }

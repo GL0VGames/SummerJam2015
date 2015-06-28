@@ -6,6 +6,7 @@ var minCSS = require("gulp-minify-css")
 var concat = require("gulp-concat");
 var imageMin = require("gulp-imagemin");
 var rsync = require("gulp-rsync");
+var connect = require("gulp-connect");
 //var obfuscate = require("gulp-obfuscate");
 
 gulp.task("build", function () {
@@ -19,14 +20,16 @@ gulp.task("build", function () {
 		.pipe(minCSS())
 		.pipe(gulp.dest("dist/"));
 
-	gulp.src("**.ts")
-		.pipe(concat("app.ts"))
+	gulp.src(["**.ts"])
 		.pipe(ts())
 //		.pipe(obfuscate())
 		.pipe(uglify({
 			mangle: false
 		}))
 		.pipe(gulp.dest("dist/"));
+
+	gulp.src("lib/phaser.js")
+		.pipe(gulp.dest("dist/lib/"));
 
 	gulp.src("img/*")
 		.pipe(imageMin())
@@ -35,6 +38,19 @@ gulp.task("build", function () {
 	gulp.src("audio/*")
 		.pipe(gulp.dest("dist/audio/"));
 
+});
+
+gulp.task("connect", function() {
+	gulp.src("dist/")
+		.pipe(connect.server({
+			root: "dist",
+			livereload: true,
+			port: 8001
+		}));
+});
+
+gulp.task("reload", function () {
+	connect.reload();
 });
 
 gulp.task("deploy", function () {
@@ -48,4 +64,9 @@ gulp.task("deploy", function () {
 			progress: true,
 			recursive: true
 	}));
+});
+
+gulp.task("default", ["build", "connect"], function() {
+	gulp.watch("**", ["build", "reload"]);
+	gulp.watch("**/**", ["build", "reload"]);
 });
