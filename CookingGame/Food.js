@@ -15,7 +15,8 @@ var CookingGame;
             this.smoothed = true;
             game.add.existing(this);
             game.physics.p2.enable(this, true);
-            this.body.velocity.x = Math.random() * 60 - 30;
+            this.body.damping = 0.5;
+            this.body.angularDamping = 0.5;
         }
         return Food;
     })(Phaser.Sprite);
@@ -25,6 +26,7 @@ var CookingGame;
         function Bacon(game, x, y) {
             _super.call(this, game, x, y, 'bacon', 0);
             this.cookRate = 1;
+            this.scale.setTo(0.2, 0.2);
             this.body.setRectangle(160, 40);
         }
         return Bacon;
