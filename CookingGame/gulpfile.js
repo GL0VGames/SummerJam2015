@@ -27,11 +27,11 @@ gulp.task("build", function () {
 		}))
 		.pipe(gulp.dest("dist/"));
 
-	gulp.src("SS/SS/images/*")
+	gulp.src("images/*")
 		.pipe(imageMin())
 		.pipe(gulp.dest("dist/images/"));
 
-	gulp.src("SS/SS/audio/*")
+	gulp.src("audio/*")
 		.pipe(gulp.dest("dist/audio/"));
 
 });
