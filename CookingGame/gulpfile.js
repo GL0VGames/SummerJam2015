@@ -58,7 +58,7 @@ gulp.task("deploy", function () {
 		.pipe(rsync({
 			root: "dist",
 			hostname: "gl0vgames.com",
-			destination: "/var/web/cb/",
+			destination: "/usr/share/nginx/cb/",
 			username: "root",
 			incremental: true,
 			progress: true,
