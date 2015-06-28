@@ -24,6 +24,9 @@ var CookingGame;
             this.load.image('level1', 'img/level1.png');
             this.load.image('bacon', 'img/bacon_uncooked.png');
             this.load.image('bacon_cooked', 'img/bacon_cooked.png');
+            this.load.image('pan', 'img/fryingpan.png');
+            this.load.image('spatula', 'img/spatula.png');
+            this.load.image('stovetop', 'img/stove2.png');
         };
         Preloader.prototype.create = function () {
             var tween = this.add.tween(this.preloadBar).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);

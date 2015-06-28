@@ -13,14 +13,15 @@ var CookingGame;
             _super.call(this, game, x, y, 'spatula', 0);
             this.slideRate = 150;
             this.rotationRate = 0.3;
-            this.anchor.setTo(0.5, 0.5);
+            this.anchor.setTo(0.1, 0.5);
             game.add.existing(this);
             game.physics.p2.enable(this, true);
             this.body.setRectangle(80, 10);
+            this.body.kinematic = true;
         }
         Spatula.prototype.update = function () {
-            this.body.x = this.game.input.x;
-            this.body.y = this.game.input.y;
+            //this.body.x = this.game.input.x;
+            //this.body.y = this.game.input.y;
         };
         return Spatula;
     })(Phaser.Sprite);
