@@ -30,9 +30,16 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="Boot.ts" />
+    <TypeScriptCompile Include="Cooking.ts" />
+    <TypeScriptCompile Include="Food.ts" />
+    <TypeScriptCompile Include="Game.ts" />
     <TypeScriptCompile Include="lib\p2.d.ts" />
     <TypeScriptCompile Include="lib\phaser.d.ts" />
     <TypeScriptCompile Include="lib\pixi.d.ts" />
+    <TypeScriptCompile Include="MainMenu.ts" />
+    <TypeScriptCompile Include="Pan.ts" />
+    <TypeScriptCompile Include="Preloader.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">
