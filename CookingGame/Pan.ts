@@ -1,7 +1,7 @@
 ﻿/// <reference path="lib/phaser.d.ts"/>
 
 module CookingGame {
-    export class Pan extends Phaser.Sprite {
+    export class FryingPan extends Phaser.Sprite {
         slideRate: number = 150;
         rotationRate: number = 0.3;
         radius: number = 300;
@@ -9,6 +9,7 @@ module CookingGame {
             super(game, x, y, 'pan', 0);
             this.anchor.setTo(0.5, 0.5);
             game.add.existing(this);
+            game.physics.p2.enable(this, true);
             //this.body.loadPolygon('physicsData', 'pan');
         }
     }
