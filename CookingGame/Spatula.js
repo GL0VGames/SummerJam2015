@@ -12,16 +12,20 @@ var CookingGame;
         function Spatula(game, x, y) {
             _super.call(this, game, x, y, 'spatula', 0);
             this.slideRate = 150;
-            this.rotationRate = 0.3;
-            this.anchor.setTo(0.1, 0.5);
+            this.rotationRate = 0.12;
+            this.scale.setTo(0.25, 0.25);
             game.add.existing(this);
             game.physics.p2.enable(this, true);
-            this.body.setRectangle(80, 10);
+            this.body.setRectangle(120, 12);
             this.body.kinematic = true;
+            this.body.angularDamping = 1;
+            this.anchor.setTo(0.5, 0.025);
         }
         Spatula.prototype.update = function () {
-            //this.body.x = this.game.input.x;
-            //this.body.y = this.game.input.y;
+            var x_dist = this.game.input.x - this.x;
+            var y_dist = this.game.input.y - this.y;
+            this.body.moveRight(x_dist * 6);
+            this.body.moveDown(y_dist * 6);
         };
         return Spatula;
     })(Phaser.Sprite);

@@ -28,13 +28,16 @@ var CookingGame;
             this.spatulaCollisionGroup = this.game.physics.p2.createCollisionGroup();
             this.foodCollisionGroup = this.game.physics.p2.createCollisionGroup();
             // create stuff
-            this.pan = new CookingGame.FryingPan(this.game, 50, 50);
+            this.pan = new CookingGame.FryingPan(this.game, 400, 300);
             this.pan.body.setCollisionGroup(this.panCollisionGroup);
+            this.pan.body.collides([this.foodCollisionGroup]);
             this.spatula = new CookingGame.Spatula(this.game, 100, 100);
+            this.spatula.body.setCollisionGroup(this.spatulaCollisionGroup);
+            this.spatula.body.collides([this.foodCollisionGroup]);
             //this.spatula.spring = this.game.physics.p2.createSpring(this.spatula.body, this.pan.body, this.pan.radius, 1000, 1);
             this.food = new Phaser.Group(this.game, undefined, 'foodGroup', false, true, Phaser.Physics.P2JS);
             for (var i = 0; i < 4; i++) {
-                var food_item = new CookingGame.Bacon(this.game, 80 + 20 * i, 80 + 10 * i);
+                var food_item = new CookingGame.Bacon(this.game, 320 + 40 * i, 220 + 40 * i);
                 this.food.add(food_item);
                 food_item.body.setCollisionGroup(this.foodCollisionGroup);
                 food_item.body.collides([this.panCollisionGroup, this.spatulaCollisionGroup, this.foodCollisionGroup]);
@@ -45,10 +48,10 @@ var CookingGame;
             function mouseWheel(event) {
                 switch (that.game.input.mouse.wheelDelta) {
                     case Phaser.Mouse.WHEEL_UP:
-                        that.spatula.rotation -= that.spatula.rotationRate;
+                        that.spatula.body.rotation -= that.spatula.rotationRate;
                         break;
                     case Phaser.Mouse.WHEEL_DOWN:
-                        that.spatula.rotation += that.spatula.rotationRate;
+                        that.spatula.body.rotation += that.spatula.rotationRate;
                         break;
                 }
             }
@@ -61,19 +64,19 @@ var CookingGame;
             this.pan.body.velocity.y = 0;
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
                 this.pan.body.moveUp(this.pan.slideRate);
-                force_y = -100;
+                force_y = -260;
             }
             else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
                 this.pan.body.moveDown(this.pan.slideRate);
-                force_y = 100;
+                force_y = 260;
             }
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
                 this.pan.body.moveLeft(this.pan.slideRate);
-                force_x = -100;
+                force_x = -260;
             }
             else if (this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
                 this.pan.body.moveRight(this.pan.slideRate);
-                force_x = 100;
+                force_x = 260;
             }
             //if (this.game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
             //    this.pan.body.rotation += this.pan.rotationRate;
@@ -84,11 +87,6 @@ var CookingGame;
             this.food.forEach(function (food_item) {
                 food_item.body.force.x = force_x;
                 food_item.body.force.y = force_y;
-            }, this, true);
-        };
-        Cooking.prototype.endCooking = function () {
-            this.food.forEach(function (food_item) {
-                food_item.kill();
             }, this, true);
         };
         return Cooking;

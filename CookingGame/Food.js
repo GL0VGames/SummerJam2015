@@ -15,8 +15,8 @@ var CookingGame;
             this.smoothed = true;
             game.add.existing(this);
             game.physics.p2.enable(this, true);
-            this.body.damping = 0.5;
-            this.body.angularDamping = 0.5;
+            this.body.damping = 0.9;
+            this.body.angularDamping = 0.9;
         }
         return Food;
     })(Phaser.Sprite);
