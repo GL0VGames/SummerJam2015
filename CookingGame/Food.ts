@@ -21,7 +21,28 @@ module CookingGame {
         cookRate: Number = 1;
         constructor(game: Phaser.Game, x: number, y: number) {
             super(game, x, y, 'bacon', 0);
-            this.scale.setTo(0.2, 0.2);
+            this.scale.setTo(0.165, 0.165);
+            this.body.setRectangle(235, 50);
+        }
+    }
+    export class Sausage extends Food {
+        cookRate: Number = 1;
+        constructor(game: Phaser.Game, x: number, y: number) {
+            super(game, x, y, 'sausage', 0);
+            this.body.setRectangle(160, 40);
+        }
+    }
+    export class Pancake extends Food {
+        cookRate: Number = 1;
+        constructor(game: Phaser.Game, x: number, y: number) {
+            super(game, x, y, 'pancake', 0);
+            this.body.setRectangle(160, 40);
+        }
+    }
+    export class HashBrown extends Food {
+        cookRate: Number = 1;
+        constructor(game: Phaser.Game, x: number, y: number) {
+            super(game, x, y, 'hashbrown', 0);
             this.body.setRectangle(160, 40);
         }
     }

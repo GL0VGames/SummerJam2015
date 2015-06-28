@@ -17,6 +17,7 @@ var CookingGame;
         }
         Cooking.prototype.create = function () {
             this.background = this.add.sprite(0, 0, 'stovetop');
+            this.background.scale.setTo(0.4, 0.4);
             this.music = this.add.audio('music', 1, false);
             //this.music.play();
             // physics setup
