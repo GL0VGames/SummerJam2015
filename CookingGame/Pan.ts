@@ -14,7 +14,7 @@ module CookingGame {
             game.physics.p2.enable(this, true);
             this.body.clearShapes();
             this.body.kinematic = true;
-            //this.body.loadPolygon('physicsData', 'pan');
+            this.body.loadPolygon('physicsData', 'pan');
         }
     }
 }

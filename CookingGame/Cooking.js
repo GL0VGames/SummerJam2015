@@ -38,7 +38,6 @@ var CookingGame;
                 this.food.add(food_item);
                 food_item.body.setCollisionGroup(this.foodCollisionGroup);
                 food_item.body.collides([this.panCollisionGroup, this.spatulaCollisionGroup, this.foodCollisionGroup]);
-                food_item.tether = new Phaser.Sprite(this.game, (food_item.x + this.pan.x) / 2, (food_item.y + this.pan.y) / 2);
             }
             // mousewheel input
             this.game.input.mouse.mouseWheelCallback = mouseWheel;

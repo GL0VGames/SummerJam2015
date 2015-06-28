@@ -27,6 +27,7 @@ var CookingGame;
             this.load.image('pan', 'img/fryingpan.png');
             this.load.image('spatula', 'img/spatula.png');
             this.load.image('stovetop', 'img/stove2.png');
+            this.load.physics('physicsData', 'physics.json');
         };
         Preloader.prototype.create = function () {
             var tween = this.add.tween(this.preloadBar).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
