@@ -33,18 +33,17 @@ module CookingGame {
             this.foodCollisionGroup = this.game.physics.p2.createCollisionGroup();
 
             // create stuff
-            this.pan = new FryingPan(this.game, 400, 300);
+            this.pan = new FryingPan(this.game, 240, 240);
             this.pan.body.setCollisionGroup(this.panCollisionGroup);
             this.pan.body.collides([this.foodCollisionGroup]);
 
             this.spatula = new Spatula(this.game, 100, 100);
-            this.spatula.body.setCollisionGroup(this.spatulaCollisionGroup);
+            //this.spatula.body.setCollisionGroup(this.spatulaCollisionGroup);
             this.spatula.body.collides([this.foodCollisionGroup]);
-            //this.spatula.spring = this.game.physics.p2.createSpring(this.spatula.body, this.pan.body, this.pan.radius, 1000, 1);
 
             this.food = new Phaser.Group(this.game, undefined, 'foodGroup', false, true, Phaser.Physics.P2JS);
             for (var i = 0; i < 4; i++) {
-                var food_item = new Bacon(this.game, 320 + 40 * i, 220 + 40 * i);
+                var food_item = new Bacon(this.game, 160 + 40 * i, 160 + 40 * i);
                 this.food.add(food_item);
                 food_item.body.setCollisionGroup(this.foodCollisionGroup);
                 food_item.body.collides([this.panCollisionGroup, this.spatulaCollisionGroup, this.foodCollisionGroup]);
@@ -52,8 +51,7 @@ module CookingGame {
 
             this.heat = new Phaser.Group(this.game, undefined, 'heatGroup', false);
 
-            // mousewheel input
-            this.game.input.mouse.mouseWheelCallback = mouseWheel;
+            // mouse input events
             var that = this;
             function mouseWheel(event) {
                 switch (that.game.input.mouse.wheelDelta) {
@@ -65,7 +63,25 @@ module CookingGame {
                         break;
                 }
             }
+            this.game.input.mouse.mouseWheelCallback = mouseWheel;
+            function mouseDown(event) {
+                that.spatula.scale.setTo(0.25, 0.25);
+                that.spatula.body.setCollisionGroup(that.spatulaCollisionGroup);
+                that.spatula.body.collides([that.foodCollisionGroup]);
+            }
+            this.game.input.onDown.add(mouseDown);
+            function mouseUp(event) {
+                that.spatula.scale.setTo(0.275, 0.275);
+                that.spatula.body.clearCollision(true);
+            }
+            this.game.input.onUp.add(mouseUp);
 
+            // timer
+            this.game.time.events.loop(333, makeHeat, this);
+            function makeHeat() {
+                var heat: Heat = new Heat(this.game, 240, 240);
+                this.heat.add(heat);
+            }
         }
         update() {
             // handle input
@@ -111,12 +127,7 @@ module CookingGame {
                 food_item.body.force.x = force_x;
                 food_item.body.force.y = force_y;
             }, this, true);
-
-            // generate heat
-            var heat: Heat = new Heat(this.game, 0, 0);
-            //this.heat.add(heat);
-
-
+            
             // cook food!
             var that = this;
             this.food.forEach(function (food_item: Food) {

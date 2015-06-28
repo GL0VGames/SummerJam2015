@@ -20,7 +20,7 @@ var CookingGame;
             game.physics.p2.enable(this, true);
             this.body.clearShapes();
             this.body.kinematic = true;
-            this.anchor.setTo(0.35, 0.5);
+            this.anchor.setTo(0.30, 0.5);
             this.body.loadPolygon('physicsData', 'pan');
         }
         return FryingPan;

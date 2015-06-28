@@ -7,12 +7,11 @@ module CookingGame {
         spring: any;
         constructor(game: Phaser.Game, x: number, y: number) {
             super(game, x, y, 'spatula', 0);
-            this.scale.setTo(0.25, 0.25);
+            this.scale.setTo(0.3, 0.3);
             game.add.existing(this);
             game.physics.p2.enable(this, true);
             this.body.setRectangle(120, 12);
             this.body.kinematic = true;
-            this.body.angularDamping = 1;
             this.anchor.setTo(0.5, 0.025);
         }
         update() {
