@@ -14,6 +14,8 @@ module CookingGame {
             this.load.audio('music', 'img/title.mp3', true);
             this.load.spritesheet('simon', 'img/simon.png', 58, 96, 5);
             this.load.image('level1', 'img/level1.png');
+            this.load.image('bacon', 'img/bacon_uncooked.png');
+            this.load.image('bacon_cooked', 'img/bacon_cooked.png');
         }
         create() {
             var tween = this.add.tween(this.preloadBar).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);

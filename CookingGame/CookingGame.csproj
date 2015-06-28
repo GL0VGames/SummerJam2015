@@ -23,9 +23,28 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.css" />
+    <Content Include="app.js" />
+    <Content Include="audio\sizzlesizzle.wav" />
+    <Content Include="Boot.js" />
+    <Content Include="Cooking.js" />
+    <Content Include="Food.js" />
+    <Content Include="Game.js" />
+    <Content Include="img\bacon_cooked.png" />
+    <Content Include="img\bacon_uncooked.png" />
+    <Content Include="img\level1.png" />
+    <Content Include="img\loader.png" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\phaser2.png" />
+    <Content Include="img\simon.png" />
+    <Content Include="img\title.mp3" />
+    <Content Include="img\titlepage.jpg" />
     <Content Include="index.html" />
     <Content Include="lib\phaser.js" />
     <Content Include="lib\phaser.min.js" />
+    <Content Include="MainMenu.js" />
+    <Content Include="Pan.js" />
+    <Content Include="Preloader.js" />
+    <Content Include="Spatula.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -40,8 +59,19 @@
     <TypeScriptCompile Include="MainMenu.ts" />
     <TypeScriptCompile Include="Pan.ts" />
     <TypeScriptCompile Include="Preloader.ts" />
+    <TypeScriptCompile Include="Spatula.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app.js.map" />
+    <Content Include="Boot.js.map" />
+    <Content Include="Cooking.js.map" />
+    <Content Include="Food.js.map" />
+    <Content Include="Game.js.map" />
+    <Content Include="MainMenu.js.map" />
+    <Content Include="Pan.js.map" />
+    <Content Include="Preloader.js.map" />
+    <Content Include="physics.json" />
+    <Content Include="Spatula.js.map" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

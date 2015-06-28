@@ -7,7 +7,7 @@ module CookingGame {
     export class Cooking extends Phaser.State {
         background: Phaser.Sprite;
         music: Phaser.Sound;
-        pan: Pan;
+        pan: FryingPan;
         spatula: Spatula;
         food: Phaser.Group;
         panCollisionGroup: Phaser.Physics.P2.CollisionGroup;
@@ -16,20 +16,22 @@ module CookingGame {
         create() {
             this.background = this.add.sprite(0, 0, 'level1');
             this.music = this.add.audio('music', 1, false);
-            //this.music.play();
+            this.music.play();
 
             // physics setup
             this.game.physics.startSystem(Phaser.Physics.P2JS);
             this.game.physics.p2.setImpactEvents(true);
             this.game.physics.p2.restitution = 0.8;
+            this.panCollisionGroup = this.game.physics.p2.createCollisionGroup();
             this.spatulaCollisionGroup = this.game.physics.p2.createCollisionGroup();
             this.foodCollisionGroup = this.game.physics.p2.createCollisionGroup();
 
             // create stuff
-            this.pan = new Pan(this.game, 50, 50);
+            this.pan = new FryingPan(this.game, 50, 50);
             this.pan.body.setCollisionGroup(this.panCollisionGroup);
 
             this.spatula = new Spatula(this.game, 100, 100);
+            this.spatula.spring = this.game.physics.p2.createSpring(this.spatula.body, this.pan.body, this.pan.radius, 1000, 1);
 
             this.food = new Phaser.Group(this.game, undefined, 'foodGroup', false, true, Phaser.Physics.P2JS);
             for (var i = 0; i < 4; i++) {
@@ -57,21 +59,24 @@ module CookingGame {
         }
         update() {
             // handle input
-            this.pan.body.SetZeroVelocity();
-            this.food.forEach(function (food_item: Food) {
-                food_item.body.SetZeroVelocity();
-            }, this, true);
+            var force_x: number = 0;
+            var force_y: number = 0;
+            //this.pan.body.SetZeroVelocity();
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
                 this.pan.body.moveUp(this.pan.slideRate);
+                force_y = -100;
             }
             else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
                 this.pan.body.moveDown(this.pan.slideRate);
+                force_y = 100;
             }
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
                 this.pan.body.moveLeft(this.pan.slideRate);
+                force_x = -100;
             }
             else if (this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
                 this.pan.body.moveRight(this.pan.slideRate);
+                force_x = 100;
             }
             //if (this.game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
             //    this.pan.body.rotation += this.pan.rotationRate;
@@ -79,6 +84,10 @@ module CookingGame {
             //else if (this.game.input.keyboard.isDown(Phaser.Keyboard.E)) {
             //    this.pan.body.rotation -= this.pan.rotationRate;
             //}
+            this.food.forEach(function (food_item: Food) {
+                food_item.body.force.x = force_x;
+                food_item.body.force.y = force_y;
+            }, this, true);
         }
         endCooking() {
             this.food.forEach(function (food_item: Food) {
