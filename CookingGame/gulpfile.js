@@ -19,7 +19,8 @@ gulp.task("build", function () {
 		.pipe(minCSS())
 		.pipe(gulp.dest("dist/"));
 
-	gulp.src("app.ts")
+	gulp.src("**.ts")
+		.pipe(concat("app.ts"))
 		.pipe(ts())
 //		.pipe(obfuscate())
 		.pipe(uglify({
