@@ -36,7 +36,7 @@ module CookingGame {
                 var food_item = new Bacon(this.game, 80 + 20 * i, 80 + 10 * i);
                 food_item.body.setCollisionGroup(this.foodCollisionGroup);
                 food_item.body.collides([this.panCollisionGroup, this.spatulaCollisionGroup, this.foodCollisionGroup]);
-                this.game.physics.p2.createSpring(food_item.body, this.pan.body, this.pan.radius, 1000, 1);
+                food_item.spring = this.game.physics.p2.createSpring(food_item.body, this.pan.body, this.pan.radius, 1000, 1);
                 this.food.add(food_item);
             }
 
@@ -80,7 +80,10 @@ module CookingGame {
             //    this.pan.body.rotation -= this.pan.rotationRate;
             //}
         }
-        addFoodItem() {
+        endCooking() {
+            this.food.forEach(function (food_item: Food) {
+                food_item.kill();
+            }, this, true);
         }
     }
 }

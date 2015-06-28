@@ -4,6 +4,7 @@ module CookingGame {
     export class Food extends Phaser.Sprite {
         cookRate: Number;
         cookProgress: Number = 0;
+        spring: any;//Phaser.Physics.P2JS.Spring;
         constructor(game: Phaser.Game, x: number, y: number) {
             super(game, x, y);
             this.body.velocity.x = 30;
