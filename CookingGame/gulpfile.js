@@ -20,6 +20,9 @@ gulp.task("build", function () {
 		.pipe(minCSS())
 		.pipe(gulp.dest("dist/"));
 
+	gulp.src("**.json")
+		.pipe(gulp.dest("dist/"));
+
 	gulp.src(["**.ts"])
 		.pipe(ts())
 //		.pipe(obfuscate())
@@ -58,7 +61,7 @@ gulp.task("deploy", function () {
 		.pipe(rsync({
 			root: "dist",
 			hostname: "gl0vgames.com",
-			destination: "/var/web/cb/",
+			destination: "/usr/share/nginx/cb/",
 			username: "root",
 			incremental: true,
 			progress: true,
