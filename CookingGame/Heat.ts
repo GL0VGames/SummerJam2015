@@ -4,17 +4,27 @@ module CookingGame {
     export class Heat extends Phaser.Sprite {
         radius: number = 40;
         intensity: number = 1;
-        fadeRate: number = 0.2;
+        fadeRate: number = 0.05;
         constructor(game: Phaser.Game, x: number, y: number, radius?: number, intensity?: number) {
             super(game, x, y);
-            this.radius = radius;
-            this.intensity = intensity;
+            if (typeof (radius) != 'undefined') {
+                this.radius = radius;
+            }
+            if (typeof (intensity) != 'undefined') {
+                this.intensity = intensity;
+            }
+            console.log("hello!");
             game.add.existing(this);
+            game.time.events.loop(Phaser.Timer.SECOND, this.decay, this);
+            game.physics.p2.enable(this, true);
+            this.body.clearShapes();
+            this.body.setCircle(this.radius);
         }
-        update() {
+        decay() {
             this.intensity -= this.fadeRate;
             if (this.intensity <= 0) {
-                this.kill();
+                console.log("bye!");
+                this.destroy();
             }
         }
     }

@@ -74,6 +74,10 @@ var CookingGame;
             function makeHeat() {
                 var heat = new CookingGame.Heat(this.game, 240, 240);
                 this.heat.add(heat);
+                // cook food!
+                this.food.forEach(function (food_item) {
+                    food_item.cook(this.heat);
+                }, this, true);
             }
         };
         Cooking.prototype.update = function () {
@@ -119,11 +123,6 @@ var CookingGame;
             this.food.forEach(function (food_item) {
                 food_item.body.force.x = force_x;
                 food_item.body.force.y = force_y;
-            }, this, true);
-            // cook food!
-            var that = this;
-            this.food.forEach(function (food_item) {
-                food_item.cook(that.heat);
             }, this, true);
         };
         return Cooking;

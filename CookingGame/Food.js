@@ -12,38 +12,27 @@ var CookingGame;
         __extends(Food, _super);
         function Food(game, x, y, key, frame) {
             _super.call(this, game, x, y, key, frame);
+            this.cookRate = 0.01;
             this.cookProgress = 0;
             this.smoothed = true;
             game.add.existing(this);
             game.physics.p2.enable(this, true);
-            this.body.damping = 0.9;
-            this.body.angularDamping = 0.9;
+            this.body.damping = 0.95;
+            this.body.angularDamping = 0.95;
         }
         Food.prototype.cook = function (heats) {
             heats.forEach(function (heat) {
-                if (Phaser.Math.distance(this.x, this.y, heat.x, heat.y) < heat.radius) {
+                if (Phaser.Math.distance(this.x, this.y, heat.x, heat.y) <= heat.radius) {
                     this.cookProgress += this.cookRate * heat.intensity;
+                    console.log(this.cookProgress);
+                }
+                if (this.cookProgress < 125) {
+                    var red = 255 - Math.floor(this.cookProgress / 100 * (0xff - 0x7e));
+                    var green = 255 - Math.floor(this.cookProgress / 100 * (0xff - 0x39));
+                    var blue = 255 - Math.floor(this.cookProgress / 100 * (0xff - 0x2a));
+                    this.tint = red * 0x010000 + green * 0x000100 + blue;
                 }
             }, this, true);
-            var red = 255 - (this.cookProgress / 100 * (0xff - 0x7e));
-            var green = 255 - (this.cookProgress / 100 * (0xff - 0x39));
-            var blue = 255 - (this.cookProgress / 100 * (0xff - 0x2a));
-            this.tint = red * 0x010000 + green * 0x000100 + blue * 0x000001;
-            var q = this.cookProgress;
-            switch (true) {
-                case (q < 25):
-                    break;
-                case (q < 50):
-                    break;
-                case (q < 75):
-                    break;
-                case (q < 100):
-                    break;
-                case (q < 125):
-                    break;
-                case (q >= 125):
-                    break;
-            }
         };
         return Food;
     })(Phaser.Sprite);
@@ -52,10 +41,21 @@ var CookingGame;
         __extends(Bacon, _super);
         function Bacon(game, x, y) {
             _super.call(this, game, x, y, 'bacon', 0);
-            this.cookRate = 1;
+            this.cookRate = 0.04;
             this.scale.setTo(0.165, 0.165);
             this.body.setRectangle(235, 50);
         }
+        Bacon.prototype.cook = function (heats) {
+            _super.prototype.cook.call(this, heats);
+            if (this.cookProgress < 100) {
+                this.scale.x = 0.165 - 0.015 * this.cookProgress / 100;
+            }
+            else {
+                this.loadTexture('bacon_cooked');
+                this.scale.x = 0.165;
+                this.tint = 0xFFFFFF;
+            }
+        };
         return Bacon;
     })(Food);
     CookingGame.Bacon = Bacon;
@@ -63,7 +63,7 @@ var CookingGame;
         __extends(Sausage, _super);
         function Sausage(game, x, y) {
             _super.call(this, game, x, y, 'sausage', 0);
-            this.cookRate = 1;
+            this.cookRate = 0.01;
             this.body.setRectangle(160, 40);
         }
         return Sausage;
@@ -73,7 +73,7 @@ var CookingGame;
         __extends(Pancake, _super);
         function Pancake(game, x, y) {
             _super.call(this, game, x, y, 'pancake', 0);
-            this.cookRate = 1;
+            this.cookRate = 0.01;
             this.body.setRectangle(160, 40);
         }
         return Pancake;
@@ -83,7 +83,7 @@ var CookingGame;
         __extends(HashBrown, _super);
         function HashBrown(game, x, y) {
             _super.call(this, game, x, y, 'hashbrown', 0);
-            this.cookRate = 1;
+            this.cookRate = 0.01;
             this.body.setRectangle(160, 40);
         }
         return HashBrown;

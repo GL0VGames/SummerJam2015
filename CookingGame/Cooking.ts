@@ -81,6 +81,11 @@ module CookingGame {
             function makeHeat() {
                 var heat: Heat = new Heat(this.game, 240, 240);
                 this.heat.add(heat);
+
+                // cook food!
+                this.food.forEach(function (food_item: Food) {
+                    food_item.cook(this.heat);
+                }, this, true);
             }
         }
         update() {
@@ -128,12 +133,6 @@ module CookingGame {
                 food_item.body.force.y = force_y;
             }, this, true);
             
-            // cook food!
-            var that = this;
-            this.food.forEach(function (food_item: Food) {
-                food_item.cook(that.heat);
-            }, this, true);
-
         }
     }
 }
