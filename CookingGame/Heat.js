@@ -26,6 +26,7 @@ var CookingGame;
             game.physics.p2.enable(this, true);
             this.body.clearShapes();
             this.body.setCircle(this.radius);
+            this.body.kinematic = true;
         }
         Heat.prototype.decay = function () {
             this.intensity -= this.fadeRate;

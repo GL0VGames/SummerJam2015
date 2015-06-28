@@ -19,6 +19,7 @@ module CookingGame {
             game.physics.p2.enable(this, true);
             this.body.clearShapes();
             this.body.setCircle(this.radius);
+            this.body.kinematic = true;
         }
         decay() {
             this.intensity -= this.fadeRate;

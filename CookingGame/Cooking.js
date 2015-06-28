@@ -84,35 +84,25 @@ var CookingGame;
             // handle input
             var force_x = 0;
             var force_y = 0;
+            var slide_x = 0;
+            var slide_y = 0;
             this.pan.body.velocity.x = 0;
             this.pan.body.velocity.y = 0;
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-                this.pan.body.moveUp(this.pan.slideRate);
-                this.heat.forEach(function (heat) {
-                    heat.y -= this.pan.slideRate;
-                }, this, true);
                 force_y = -260;
+                slide_y = -this.pan.slideRate;
             }
             else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
-                this.pan.body.moveDown(this.pan.slideRate);
-                this.heat.forEach(function (heat) {
-                    heat.y += this.pan.slideRate;
-                }, this, true);
                 force_y = 260;
+                slide_y = this.pan.slideRate;
             }
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
-                this.pan.body.moveLeft(this.pan.slideRate);
-                this.heat.forEach(function (heat) {
-                    heat.x -= this.pan.slideRate;
-                }, this, true);
                 force_x = -260;
+                slide_x = -this.pan.slideRate;
             }
             else if (this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
-                this.pan.body.moveRight(this.pan.slideRate);
-                this.heat.forEach(function (heat) {
-                    heat.x += this.pan.slideRate;
-                }, this, true);
                 force_x = 260;
+                slide_x = this.pan.slideRate;
             }
             //if (this.game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
             //    this.pan.body.rotation += this.pan.rotationRate;
@@ -123,6 +113,12 @@ var CookingGame;
             this.food.forEach(function (food_item) {
                 food_item.body.force.x = force_x;
                 food_item.body.force.y = force_y;
+            }, this, true);
+            this.pan.body.moveRight(slide_x);
+            this.pan.body.moveDown(slide_y);
+            this.heat.forEach(function (heat) {
+                heat.body.moveRight(slide_x);
+                heat.body.moveDown(slide_y);
             }, this, true);
         };
         return Cooking;
