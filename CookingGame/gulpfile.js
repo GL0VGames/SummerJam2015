@@ -20,6 +20,9 @@ gulp.task("build", function () {
 		.pipe(minCSS())
 		.pipe(gulp.dest("dist/"));
 
+	gulp.src("**.json")
+		.pipe(gulp.dest("dist/"));
+
 	gulp.src(["**.ts"])
 		.pipe(ts())
 //		.pipe(obfuscate())
