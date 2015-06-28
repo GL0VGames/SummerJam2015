@@ -34,15 +34,24 @@ var CookingGame;
             this.load.image('pan', 'img/fryingpan.png');
             this.load.image('spatula', 'img/spatula.png');
             this.load.image('stovetop', 'img/stove2.png');
-            this.load.physics('physicsData', 'physics.json');
+            //this.load.physics('physicsData', 'physics.json');
+            this.load.image('menu', 'img/menu.png');
+            this.load.image('mbacon', 'img/mbacon.png');
+            this.load.image('msausage', 'img/msausage.png');
+            this.load.image('mtaters', 'img/mtaters.png');
+            this.load.image('mpancake', 'img/mpancake.png');
+            this.load.image('mbacon_hover', 'img/mbacon_hover.png');
+            this.load.image('msausage_hover', 'img/msausage_hover.png');
+            this.load.image('mtaters_hover', 'img/mtaters_hover.png');
+            this.load.image('mpancake_hover', 'img/mpancake_hover.png');
         };
         Preloader.prototype.create = function () {
             var tween = this.add.tween(this.preloadBar).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
             tween.onComplete.add(this.startMainMenu, this);
         };
         Preloader.prototype.startMainMenu = function () {
-            //this.game.state.start('MainMenu', true, false);
-            this.game.state.start('Cooking', true, false);
+            this.game.state.start('MainMenu', true, false);
+            //this.game.state.start('Cooking', true, false);
         };
         return Preloader;
     })(Phaser.State);

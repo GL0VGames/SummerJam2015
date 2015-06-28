@@ -13,21 +13,34 @@ var CookingGame;
             _super.apply(this, arguments);
         }
         MainMenu.prototype.create = function () {
-            this.background = this.add.sprite(0, 0, 'titlepage');
-            this.background.alpha = 0;
-            this.logo = this.add.sprite(this.world.centerX, -300, 'logo');
-            this.logo.anchor.setTo(0.5, 0.5);
-            this.add.tween(this.background).to({ alpha: 1 }, 2000, Phaser.Easing.Bounce.InOut, true);
-            this.add.tween(this.logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 2000);
-            this.input.onDown.addOnce(this.fadeOut, this);
+            var that = this;
+            this.background = this.add.sprite(0, 0, 'menu');
+            this.background.scale.setTo(0.4, 0.4);
+            this.bacon = this.add.button(0, 250, 'mbacon', function () {
+                that.startGame('bacon');
+            }, this);
+            this.bacon.scale.setTo(0.4, 0.4);
+            this.bacon.mouseover = function () {
+                that.bacon.loadTexture('mbacon_hover', 0);
+            };
+            this.sausage = this.add.button(400, 250, 'msausage', function () {
+                that.startGame('sausage');
+            }, this);
+            this.sausage.scale.setTo(0.4, 0.4);
+            this.sausage.mouseover = function () {
+                that.sausage.loadTexture('msausage_hover', 0);
+            };
+            this.pancake = this.add.button(0, 400, 'mpancake', function () {
+                that.startGame('pancake');
+            }, this);
+            this.pancake.scale.setTo(0.4, 0.4);
+            this.taters = this.add.button(400, 400, 'mtaters', function () {
+                that.startGame('taters');
+            }, this);
+            this.taters.scale.setTo(0.4, 0.4);
         };
-        MainMenu.prototype.fadeOut = function () {
-            this.add.tween(this.background).to({ alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-            var tween = this.add.tween(this.logo).to({ y: 800 }, 2000, Phaser.Easing.Linear.None, true);
-            tween.onComplete.add(this.startGame, this);
-        };
-        MainMenu.prototype.startGame = function () {
-            this.game.state.start('Cooking', true, false);
+        MainMenu.prototype.startGame = function (mode) {
+            this.game.state.start('Cooking', true, false, mode);
         };
         return MainMenu;
     })(Phaser.State);
