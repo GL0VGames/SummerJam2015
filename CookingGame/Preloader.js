@@ -20,6 +20,7 @@ var CookingGame;
             this.load.image('titlepage', 'img/titlepage.jpg');
             this.load.image('logo', 'img/logo.png');
             this.load.audio('music', 'img/title.mp3', true);
+            this.load.audio('sizzle', 'audio/sizzlesizzle.mp3', true);
             this.load.spritesheet('simon', 'img/simon.png', 58, 96, 5);
             this.load.image('level1', 'img/level1.png');
             this.load.image('bacon', 'img/bacon_uncooked.png');

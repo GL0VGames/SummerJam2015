@@ -29,13 +29,17 @@
     <Content Include="Cooking.js" />
     <Content Include="Food.js" />
     <Content Include="Game.js" />
+    <Content Include="Heat.js" />
     <Content Include="img\bacon_cooked.png" />
     <Content Include="img\bacon_uncooked.png" />
+    <Content Include="img\fryingpan.png" />
     <Content Include="img\level1.png" />
     <Content Include="img\loader.png" />
     <Content Include="img\logo.png" />
     <Content Include="img\phaser2.png" />
     <Content Include="img\simon.png" />
+    <Content Include="img\spatula.png" />
+    <Content Include="img\stove2.png" />
     <Content Include="img\title.mp3" />
     <Content Include="img\titlepage.jpg" />
     <Content Include="index.html" />
@@ -53,6 +57,7 @@
     <TypeScriptCompile Include="Cooking.ts" />
     <TypeScriptCompile Include="Food.ts" />
     <TypeScriptCompile Include="Game.ts" />
+    <TypeScriptCompile Include="Heat.ts" />
     <TypeScriptCompile Include="lib\p2.d.ts" />
     <TypeScriptCompile Include="lib\phaser.d.ts" />
     <TypeScriptCompile Include="lib\pixi.d.ts" />
@@ -72,6 +77,7 @@
     <Content Include="Preloader.js.map" />
     <Content Include="physics.json" />
     <Content Include="Spatula.js.map" />
+    <Content Include="Heat.js.map" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
