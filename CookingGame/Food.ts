@@ -29,7 +29,7 @@ module CookingGame {
         }
     }
     export class Bacon extends Food {
-        cookRate: number = 0.04;
+        cookRate: number = 0.06;
         constructor(game: Phaser.Game, x: number, y: number) {
             super(game, x, y, 'bacon', 0);
             this.scale.setTo(0.165, 0.165);
@@ -47,15 +47,26 @@ module CookingGame {
         }
     }
     export class Sausage extends Food {
-        cookRate: number = 0.01;
+        cookRate: number = 0.06;
         constructor(game: Phaser.Game, x: number, y: number) {
             super(game, x, y, 'sausage', 0);
-            this.body.setRectangle(160, 40);
-            this.scale.setTo(0.165, 0.165);
+            this.body.setRectangle(200, 54);
+            this.scale.setTo(0.2, 0.2);
+            this.anchor.setTo(0.50, 0.45);
+        }
+        cook(heats: Phaser.Group) {
+            super.cook(heats);
+            if (this.cookProgress < 100) {
+                //this.scale.x = 0.165 - 0.015 * this.cookProgress / 100;
+            } else {
+                this.loadTexture('sausage_cooked');
+                this.scale.x = 0.2;
+                this.tint = 0xFFFFFF;
+            }
         }
     }
     export class Pancake extends Food {
-        cookRate: number = 0.01;
+        cookRate: number = 0.06;
         constructor(game: Phaser.Game, x: number, y: number) {
             super(game, x, y, 'pancakes', 0);
             this.body.clearShapes();
@@ -64,7 +75,7 @@ module CookingGame {
         }
     }
     export class HashBrown extends Food {
-        cookRate: number = 0.01;
+        cookRate: number = 0.06;
         constructor(game: Phaser.Game, x: number, y: number) {
             super(game, x, y, 'taters', 0);
             this.body.setRectangle(210, 110);

@@ -41,7 +41,7 @@ var CookingGame;
         __extends(Bacon, _super);
         function Bacon(game, x, y) {
             _super.call(this, game, x, y, 'bacon', 0);
-            this.cookRate = 0.04;
+            this.cookRate = 0.06;
             this.scale.setTo(0.165, 0.165);
             this.body.setRectangle(235, 50);
         }
@@ -63,10 +63,21 @@ var CookingGame;
         __extends(Sausage, _super);
         function Sausage(game, x, y) {
             _super.call(this, game, x, y, 'sausage', 0);
-            this.cookRate = 0.01;
-            this.body.setRectangle(160, 40);
-            this.scale.setTo(0.165, 0.165);
+            this.cookRate = 0.06;
+            this.body.setRectangle(200, 54);
+            this.scale.setTo(0.2, 0.2);
+            this.anchor.setTo(0.50, 0.45);
         }
+        Sausage.prototype.cook = function (heats) {
+            _super.prototype.cook.call(this, heats);
+            if (this.cookProgress < 100) {
+            }
+            else {
+                this.loadTexture('sausage_cooked');
+                this.scale.x = 0.2;
+                this.tint = 0xFFFFFF;
+            }
+        };
         return Sausage;
     })(Food);
     CookingGame.Sausage = Sausage;
@@ -74,7 +85,7 @@ var CookingGame;
         __extends(Pancake, _super);
         function Pancake(game, x, y) {
             _super.call(this, game, x, y, 'pancakes', 0);
-            this.cookRate = 0.01;
+            this.cookRate = 0.06;
             this.body.clearShapes();
             this.body.setCircle(90);
             this.scale.setTo(0.275, 0.275);
@@ -86,7 +97,7 @@ var CookingGame;
         __extends(HashBrown, _super);
         function HashBrown(game, x, y) {
             _super.call(this, game, x, y, 'taters', 0);
-            this.cookRate = 0.01;
+            this.cookRate = 0.06;
             this.body.setRectangle(210, 110);
             this.scale.setTo(0.165, 0.165);
         }

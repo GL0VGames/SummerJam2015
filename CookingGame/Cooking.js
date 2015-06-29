@@ -23,7 +23,7 @@ var CookingGame;
             this.background = this.add.sprite(0, 0, 'stovetop');
             this.background.scale.setTo(0.4, 0.4);
             this.music = this.add.audio('music', 1, false);
-            this.sizzle = this.add.audio('sizzle', 1, true);
+            this.sizzle = this.add.audio('sizzle', 0.5, true);
             this.sizzle.play();
             console.log(this.sizzle.isPlaying);
             // physics setup
@@ -120,19 +120,19 @@ var CookingGame;
             this.pan.body.velocity.x = 0;
             this.pan.body.velocity.y = 0;
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-                force_y = -500;
+                force_y = -700;
                 slide_y = -this.pan.slideRate;
             }
             else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
-                force_y = 500;
+                force_y = 700;
                 slide_y = this.pan.slideRate;
             }
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
-                force_x = -500;
+                force_x = -700;
                 slide_x = -this.pan.slideRate;
             }
             else if (this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
-                force_x = 500;
+                force_x = 700;
                 slide_x = this.pan.slideRate;
             }
             //if (this.game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
