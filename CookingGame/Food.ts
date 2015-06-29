@@ -10,8 +10,8 @@ module CookingGame {
             this.smoothed = true;
             game.add.existing(this);
             game.physics.p2.enable(this, true);
-            this.body.damping = 1;
-            this.body.angularDamping = 1;
+            this.body.damping = 0.99;
+            this.body.angularDamping = 0.99;
         }
         cook(heats: Phaser.Group) {
             heats.forEach(function (heat: Heat) {
