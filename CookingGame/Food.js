@@ -74,7 +74,6 @@ var CookingGame;
             }
             else {
                 this.loadTexture('sausage_cooked');
-                this.scale.x = 0.2;
                 this.tint = 0xFFFFFF;
             }
         };
@@ -90,6 +89,15 @@ var CookingGame;
             this.body.setCircle(90);
             this.scale.setTo(0.275, 0.275);
         }
+        Pancake.prototype.cook = function (heats) {
+            _super.prototype.cook.call(this, heats);
+            if (this.cookProgress < 100) {
+            }
+            else {
+                this.loadTexture('pancakes_cooked');
+                this.tint = 0xFFFFFF;
+            }
+        };
         return Pancake;
     })(Food);
     CookingGame.Pancake = Pancake;
@@ -101,6 +109,15 @@ var CookingGame;
             this.body.setRectangle(210, 110);
             this.scale.setTo(0.165, 0.165);
         }
+        HashBrown.prototype.cook = function (heats) {
+            _super.prototype.cook.call(this, heats);
+            if (this.cookProgress < 100) {
+            }
+            else {
+                this.loadTexture('taters_cooked');
+                this.tint = 0xFFFFFF;
+            }
+        };
         return HashBrown;
     })(Food);
     CookingGame.HashBrown = HashBrown;

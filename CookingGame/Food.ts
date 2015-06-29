@@ -57,10 +57,8 @@ module CookingGame {
         cook(heats: Phaser.Group) {
             super.cook(heats);
             if (this.cookProgress < 100) {
-                //this.scale.x = 0.165 - 0.015 * this.cookProgress / 100;
             } else {
                 this.loadTexture('sausage_cooked');
-                this.scale.x = 0.2;
                 this.tint = 0xFFFFFF;
             }
         }
@@ -73,6 +71,14 @@ module CookingGame {
             this.body.setCircle(90);
             this.scale.setTo(0.275, 0.275);
         }
+        cook(heats: Phaser.Group) {
+            super.cook(heats);
+            if (this.cookProgress < 100) {
+            } else {
+                this.loadTexture('pancakes_cooked');
+                this.tint = 0xFFFFFF;
+            }
+        }
     }
     export class HashBrown extends Food {
         cookRate: number = 0.06;
@@ -80,6 +86,14 @@ module CookingGame {
             super(game, x, y, 'taters', 0);
             this.body.setRectangle(210, 110);
             this.scale.setTo(0.165, 0.165);
+        }
+        cook(heats: Phaser.Group) {
+            super.cook(heats);
+            if (this.cookProgress < 100) {
+            } else {
+                this.loadTexture('taters_cooked');
+                this.tint = 0xFFFFFF;
+            }
         }
     }
 }

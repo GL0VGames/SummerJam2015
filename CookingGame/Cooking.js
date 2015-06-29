@@ -135,12 +135,16 @@ var CookingGame;
                 force_x = 700;
                 slide_x = this.pan.slideRate;
             }
-            //if (this.game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
-            //    this.pan.body.rotation += this.pan.rotationRate;
-            //}
-            //else if (this.game.input.keyboard.isDown(Phaser.Keyboard.E)) {
-            //    this.pan.body.rotation -= this.pan.rotationRate;
-            //}
+            if (this.game.input.keyboard.isDown(Phaser.Keyboard.TILDE)) {
+                this.food.forEach(function (f) {
+                    f.body.debug = false;
+                }, this, true);
+                this.heat.forEach(function (f) {
+                    f.body.debug = false;
+                }, this, true);
+                this.spatula.body.debug = false;
+                this.pan.body.debug = false;
+            }
             this.food.forEach(function (food_item) {
                 food_item.body.force.x = force_x;
                 food_item.body.force.y = force_y;
