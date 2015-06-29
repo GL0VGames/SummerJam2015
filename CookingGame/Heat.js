@@ -11,7 +11,7 @@ var CookingGame;
         __extends(Heat, _super);
         function Heat(game, x, y, radius, intensity) {
             _super.call(this, game, x, y);
-            this.radius = 40;
+            this.radius = 75;
             this.intensity = 1;
             this.fadeRate = 0.05;
             if (typeof (radius) != 'undefined') {
@@ -30,7 +30,7 @@ var CookingGame;
         }
         Heat.prototype.decay = function () {
             this.intensity -= this.fadeRate;
-            this.radius += 2;
+            this.radius += 3;
             if (this.body)
                 this.body.setCircle(this.radius);
             if (this.intensity <= 0) {

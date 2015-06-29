@@ -58,8 +58,9 @@ module CookingGame {
         cookRate: number = 0.01;
         constructor(game: Phaser.Game, x: number, y: number) {
             super(game, x, y, 'pancakes', 0);
-            this.body.setRectangle(160, 40);
-            this.scale.setTo(0.165, 0.165);
+            this.body.clearShapes();
+            this.body.setCircle(90);
+            this.scale.setTo(0.275, 0.275);
         }
     }
     export class HashBrown extends Food {

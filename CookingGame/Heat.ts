@@ -2,7 +2,7 @@
 
 module CookingGame {
     export class Heat extends Phaser.Sprite {
-        radius: number = 40;
+        radius: number = 75;
         intensity: number = 1;
         fadeRate: number = 0.05;
         constructor(game: Phaser.Game, x: number, y: number, radius?: number, intensity?: number) {
@@ -23,7 +23,7 @@ module CookingGame {
         }
         decay() {
             this.intensity -= this.fadeRate;
-            this.radius += 2;
+            this.radius += 3;
             if (this.body) this.body.setCircle(this.radius);
             if (this.intensity <= 0) {
                 console.log("bye!");

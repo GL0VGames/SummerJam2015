@@ -65,7 +65,7 @@ module CookingGame {
                     break;
                 case 'pancake':
                     for (var i = 0; i < 2; i++) {
-                        var food_item = new Pancake(this.game, 220 + 40 * i, 220 + 40 * i);
+                        var food_item = new Pancake(this.game, 170 + 140 * i, 170 + 140 * i);
                         this.food.add(food_item);
                         food_item.body.setCollisionGroup(this.foodCollisionGroup);
                         food_item.body.collides([this.panCollisionGroup, this.spatulaCollisionGroup, this.foodCollisionGroup]);

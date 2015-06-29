@@ -75,8 +75,9 @@ var CookingGame;
         function Pancake(game, x, y) {
             _super.call(this, game, x, y, 'pancakes', 0);
             this.cookRate = 0.01;
-            this.body.setRectangle(160, 40);
-            this.scale.setTo(0.165, 0.165);
+            this.body.clearShapes();
+            this.body.setCircle(90);
+            this.scale.setTo(0.275, 0.275);
         }
         return Pancake;
     })(Food);
