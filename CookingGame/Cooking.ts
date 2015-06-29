@@ -13,9 +13,13 @@ module CookingGame {
         spatula: Spatula;
         food: Phaser.Group;
         heat: Phaser.Group;
+        mode: string;
         panCollisionGroup: Phaser.Physics.P2.CollisionGroup;
         spatulaCollisionGroup: Phaser.Physics.P2.CollisionGroup;
         foodCollisionGroup: Phaser.Physics.P2.CollisionGroup;
+        init(mode?: string) {
+            this.mode = mode;
+        }
         create() {
             this.background = this.add.sprite(0, 0, 'stovetop');
             this.background.scale.setTo(0.4, 0.4);
@@ -42,11 +46,39 @@ module CookingGame {
             this.spatula.body.collides([this.foodCollisionGroup]);
 
             this.food = new Phaser.Group(this.game, undefined, 'foodGroup', false, true, Phaser.Physics.P2JS);
-            for (var i = 0; i < 4; i++) {
-                var food_item = new Bacon(this.game, 160 + 40 * i, 160 + 40 * i);
-                this.food.add(food_item);
-                food_item.body.setCollisionGroup(this.foodCollisionGroup);
-                food_item.body.collides([this.panCollisionGroup, this.spatulaCollisionGroup, this.foodCollisionGroup]);
+            switch (this.mode) {
+                case 'bacon':
+                    for (var i = 0; i < 4; i++) {
+                        var food_item = new Bacon(this.game, 180 + 40 * i, 180 + 40 * i);
+                        this.food.add(food_item);
+                        food_item.body.setCollisionGroup(this.foodCollisionGroup);
+                        food_item.body.collides([this.panCollisionGroup, this.spatulaCollisionGroup, this.foodCollisionGroup]);
+                    }
+                    break;
+                case 'sausage':
+                    for (var i = 0; i < 3; i++) {
+                        var food_item = new Sausage(this.game, 200 + 40 * i, 200 + 40 * i);
+                        this.food.add(food_item);
+                        food_item.body.setCollisionGroup(this.foodCollisionGroup);
+                        food_item.body.collides([this.panCollisionGroup, this.spatulaCollisionGroup, this.foodCollisionGroup]);
+                    }
+                    break;
+                case 'pancake':
+                    for (var i = 0; i < 2; i++) {
+                        var food_item = new Pancake(this.game, 220 + 40 * i, 220 + 40 * i);
+                        this.food.add(food_item);
+                        food_item.body.setCollisionGroup(this.foodCollisionGroup);
+                        food_item.body.collides([this.panCollisionGroup, this.spatulaCollisionGroup, this.foodCollisionGroup]);
+                    }
+                    break;
+                case 'taters':
+                    for (var i = 0; i < 3; i++) {
+                        var food_item = new HashBrown(this.game, 200 + 40 * i, 130 + 110 * i);
+                        this.food.add(food_item);
+                        food_item.body.setCollisionGroup(this.foodCollisionGroup);
+                        food_item.body.collides([this.panCollisionGroup, this.spatulaCollisionGroup, this.foodCollisionGroup]);
+                    }
+                    break;
             }
 
             this.heat = new Phaser.Group(this.game, undefined, 'heatGroup', false);

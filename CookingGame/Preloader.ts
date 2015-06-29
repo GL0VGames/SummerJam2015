@@ -10,7 +10,6 @@ module CookingGame {
  
             //  Load our actual games assets
             this.load.image('titlepage', 'img/titlepage.jpg');
-            this.load.image('logo', 'img/logo.png');
             this.load.audio('music', 'img/title.mp3', true);
             this.load.audio('sizzle', 'audio/sizzlesizzle.mp3', true);
             this.load.spritesheet('simon', 'img/simon.png', 58, 96, 5);
@@ -32,10 +31,12 @@ module CookingGame {
             this.load.image('msausage', 'img/msausage.png');
             this.load.image('mtaters', 'img/mtaters.png');
             this.load.image('mpancake', 'img/mpancake.png');
-            this.load.image('mbacon_hover', 'img/mbacon_hover.png');
-            this.load.image('msausage_hover', 'img/msausage_hover.png');
-            this.load.image('mtaters_hover', 'img/mtaters_hover.png');
-            this.load.image('mpancake_hover', 'img/mpancake_hover.png');
+            this.load.image('mbacon_hover', 'img/mbacon-hover.png');
+            this.load.image('msausage_hover', 'img/msausage-hover.png');
+            this.load.image('mtaters_hover', 'img/mtaters-hover.png');
+            this.load.image('mpancake_hover', 'img/mpancake-hover.png');
+            this.load.image('logo', 'img/gl0v-logo.png');
+            this.load.image('logo_hover', 'img/gl0v-logo-hover.png');
         }
         create() {
             var tween = this.add.tween(this.preloadBar).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);

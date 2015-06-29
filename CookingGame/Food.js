@@ -65,6 +65,7 @@ var CookingGame;
             _super.call(this, game, x, y, 'sausage', 0);
             this.cookRate = 0.01;
             this.body.setRectangle(160, 40);
+            this.scale.setTo(0.165, 0.165);
         }
         return Sausage;
     })(Food);
@@ -72,9 +73,10 @@ var CookingGame;
     var Pancake = (function (_super) {
         __extends(Pancake, _super);
         function Pancake(game, x, y) {
-            _super.call(this, game, x, y, 'pancake', 0);
+            _super.call(this, game, x, y, 'pancakes', 0);
             this.cookRate = 0.01;
             this.body.setRectangle(160, 40);
+            this.scale.setTo(0.165, 0.165);
         }
         return Pancake;
     })(Food);
@@ -82,9 +84,10 @@ var CookingGame;
     var HashBrown = (function (_super) {
         __extends(HashBrown, _super);
         function HashBrown(game, x, y) {
-            _super.call(this, game, x, y, 'hashbrown', 0);
+            _super.call(this, game, x, y, 'taters', 0);
             this.cookRate = 0.01;
-            this.body.setRectangle(160, 40);
+            this.body.setRectangle(210, 110);
+            this.scale.setTo(0.165, 0.165);
         }
         return HashBrown;
     })(Food);

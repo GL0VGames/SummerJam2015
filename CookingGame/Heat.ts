@@ -23,6 +23,8 @@ module CookingGame {
         }
         decay() {
             this.intensity -= this.fadeRate;
+            this.radius += 2;
+            if (this.body) this.body.setCircle(this.radius);
             if (this.intensity <= 0) {
                 console.log("bye!");
                 this.destroy();
