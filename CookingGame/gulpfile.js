@@ -38,7 +38,7 @@ gulp.task("build", function () {
 		.pipe(imageMin())
 		.pipe(gulp.dest("dist/img/"));
 
-	gulp.src("audio/*")
+	gulp.src(["audio/**.ogg", "audio/**.mp3", "audio/**.wav"])
 		.pipe(gulp.dest("dist/audio/"));
 
 });
