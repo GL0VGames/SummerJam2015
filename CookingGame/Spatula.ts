@@ -19,7 +19,6 @@ module CookingGame {
             var y_dist: number = this.game.input.y - this.y;
             this.body.moveRight(x_dist * 6);
             this.body.moveDown(y_dist * 6);
-
         }
     }
 }

@@ -29,7 +29,9 @@ module CookingGame {
             [605, 152, 609, 234, 934, 331, 999, 261],
             [605, 1328, 605, 1392, 948, 1314, 923, 1247]];
 
-            //this.body.addPolygon({}, geom);
+            this.body.addPolygon({}, geom);
+        }
+        update() {
         }
     }
 }

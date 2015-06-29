@@ -21,6 +21,9 @@ module CookingGame {
             this.body.setCircle(this.radius);
             this.body.kinematic = true;
         }
+        setDebug(d: boolean) {
+            this.body.debug = d;
+        }
         decay() {
             this.intensity -= this.fadeRate;
             this.radius += 3;

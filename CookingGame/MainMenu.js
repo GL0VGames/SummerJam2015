@@ -36,7 +36,7 @@ var CookingGame;
             this.sausage.events.onInputOut.add(function () {
                 that.sausage.loadTexture('msausage', 0);
             }, this);
-            this.pancake = this.add.button(0, 370, 'mpancake', function () {
+            this.pancake = this.add.button(0, 350, 'mpancake', function () {
                 that.startGame('pancake');
             }, this);
             this.pancake.scale.setTo(0.4, 0.4);
@@ -46,7 +46,7 @@ var CookingGame;
             this.pancake.events.onInputOut.add(function () {
                 that.pancake.loadTexture('mpancake', 0);
             }, this);
-            this.taters = this.add.button(400, 370, 'mtaters', function () {
+            this.taters = this.add.button(400, 350, 'mtaters', function () {
                 that.startGame('taters');
             }, this);
             this.taters.scale.setTo(0.4, 0.4);

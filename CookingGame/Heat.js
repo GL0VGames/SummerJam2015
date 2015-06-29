@@ -28,6 +28,9 @@ var CookingGame;
             this.body.setCircle(this.radius);
             this.body.kinematic = true;
         }
+        Heat.prototype.setDebug = function (d) {
+            this.body.debug = d;
+        };
         Heat.prototype.decay = function () {
             this.intensity -= this.fadeRate;
             this.radius += 3;

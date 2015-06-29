@@ -15,6 +15,7 @@ var CookingGame;
         __extends(Cooking, _super);
         function Cooking() {
             _super.apply(this, arguments);
+            this.debug = false;
         }
         Cooking.prototype.init = function (mode) {
             this.mode = mode;
@@ -37,9 +38,7 @@ var CookingGame;
             this.pan = new CookingGame.FryingPan(this.game, 240, 240);
             this.pan.body.setCollisionGroup(this.panCollisionGroup);
             this.pan.body.collides([this.foodCollisionGroup]);
-            this.spatula = new CookingGame.Spatula(this.game, 100, 100);
-            //this.spatula.body.setCollisionGroup(this.spatulaCollisionGroup);
-            this.spatula.body.collides([this.foodCollisionGroup]);
+            this.pan.body.debug = this.debug;
             this.food = new Phaser.Group(this.game, undefined, 'foodGroup', false, true, Phaser.Physics.P2JS);
             switch (this.mode) {
                 case 'bacon':
@@ -48,6 +47,7 @@ var CookingGame;
                         this.food.add(food_item);
                         food_item.body.setCollisionGroup(this.foodCollisionGroup);
                         food_item.body.collides([this.panCollisionGroup, this.spatulaCollisionGroup, this.foodCollisionGroup]);
+                        food_item.body.debug = this.debug;
                     }
                     break;
                 case 'sausage':
@@ -56,6 +56,7 @@ var CookingGame;
                         this.food.add(food_item);
                         food_item.body.setCollisionGroup(this.foodCollisionGroup);
                         food_item.body.collides([this.panCollisionGroup, this.spatulaCollisionGroup, this.foodCollisionGroup]);
+                        food_item.body.debug = this.debug;
                     }
                     break;
                 case 'pancake':
@@ -64,6 +65,7 @@ var CookingGame;
                         this.food.add(food_item);
                         food_item.body.setCollisionGroup(this.foodCollisionGroup);
                         food_item.body.collides([this.panCollisionGroup, this.spatulaCollisionGroup, this.foodCollisionGroup]);
+                        food_item.body.debug = this.debug;
                     }
                     break;
                 case 'taters':
@@ -72,10 +74,15 @@ var CookingGame;
                         this.food.add(food_item);
                         food_item.body.setCollisionGroup(this.foodCollisionGroup);
                         food_item.body.collides([this.panCollisionGroup, this.spatulaCollisionGroup, this.foodCollisionGroup]);
+                        food_item.body.debug = this.debug;
                     }
                     break;
             }
             this.heat = new Phaser.Group(this.game, undefined, 'heatGroup', false);
+            this.spatula = new CookingGame.Spatula(this.game, 100, 100);
+            //this.spatula.body.setCollisionGroup(this.spatulaCollisionGroup);
+            this.spatula.body.collides([this.foodCollisionGroup]);
+            this.spatula.body.debug = this.debug;
             // mouse input events
             var that = this;
             function mouseWheel(event) {
@@ -105,6 +112,7 @@ var CookingGame;
             function makeHeat() {
                 var heat = new CookingGame.Heat(this.game, 240, 240);
                 this.heat.add(heat);
+                //this.heat.body.debug = this.debug;
                 // cook food!
                 this.food.forEach(function (food_item) {
                     food_item.cook(this.heat);
@@ -136,14 +144,28 @@ var CookingGame;
                 slide_x = this.pan.slideRate;
             }
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.TILDE)) {
-                this.food.forEach(function (f) {
-                    f.body.debug = false;
-                }, this, true);
-                this.heat.forEach(function (f) {
-                    f.body.debug = false;
-                }, this, true);
-                this.spatula.body.debug = false;
-                this.pan.body.debug = false;
+                if (this.debug) {
+                    this.food.forEach(function (f) {
+                        f.body.debug = false;
+                    }, this, true);
+                    this.heat.forEach(function (f) {
+                        f.body.debug = false;
+                    }, this, true);
+                    this.spatula.body.debug = false;
+                    this.pan.body.debug = false;
+                    this.debug = false;
+                }
+                else {
+                    this.food.forEach(function (f) {
+                        f.body.debug = true;
+                    }, this, true);
+                    this.heat.forEach(function (f) {
+                        f.body.debug = true;
+                    }, this, true);
+                    this.spatula.body.debug = true;
+                    this.pan.body.debug = true;
+                    this.debug = true;
+                }
             }
             this.food.forEach(function (food_item) {
                 food_item.body.force.x = force_x;
@@ -154,6 +176,7 @@ var CookingGame;
             this.heat.forEach(function (heat) {
                 heat.body.moveRight(slide_x);
                 heat.body.moveDown(slide_y);
+                heat.setDebug(this.debug);
             }, this, true);
         };
         return Cooking;
