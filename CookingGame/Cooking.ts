@@ -129,19 +129,19 @@ module CookingGame {
             this.pan.body.velocity.x = 0;
             this.pan.body.velocity.y = 0;
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-                force_y = -260;
+                force_y = -500;
                 slide_y = -this.pan.slideRate;
             }
             else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
-                force_y = 260;
+                force_y = 500;
                 slide_y = this.pan.slideRate;
             }
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
-                force_x = -260;
+                force_x = -500;
                 slide_x = -this.pan.slideRate;
             }
             else if (this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
-                force_x = 260;
+                force_x = 500;
                 slide_x = this.pan.slideRate;
             }
             //if (this.game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
